@@ -5,10 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from '../admin.service';
 import { ApplicationService } from '../application.service';
-import { DataConfig } from '../models/dataConfig';
 import { PublicCall } from '../models/publicCall';
-
-import { TemplatesService } from '../templates.service';
 
 export class AppsPerCall{
   call: PublicCall;
@@ -20,6 +17,7 @@ export class AppsPerCall{
   templateUrl: './report1.component.html',
   styleUrls: ['./report1.component.css']
 })
+
 export class Report1Component implements OnInit {
 
   fileName='';
@@ -30,8 +28,6 @@ export class Report1Component implements OnInit {
   basicData: any;
   basicOptions: any;
  
-  
-
   constructor(private http: HttpClient, private appService: ApplicationService, private adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -50,22 +46,14 @@ export class Report1Component implements OnInit {
              obj.count=apc['count'];
              this.filteredCalls.push(obj);
              this.data.push({'name':call.name,'value':apc['count']});
-             
-             
            }
          })
-
        })
-       //
        
        this.dataSource = new MatTableDataSource<AppsPerCall>(this.filteredCalls);
        this.dataSource.paginator = this.paginator;
-       
-     
- 
      })
     })
-    
   }
 
   appsPerCall: []=[];
@@ -76,8 +64,4 @@ export class Report1Component implements OnInit {
 //appssPerInstitution?
 //appssPerScientificField?
 //callsPerCategory?
-
-  
-  
-
 }

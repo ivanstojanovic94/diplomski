@@ -1,5 +1,3 @@
-import { Form } from "@angular/forms";
-
 export class Application{
     id: number;
     idCall: number;
@@ -12,6 +10,4 @@ export class Application{
     field: string;
     institution: string;
     data: Object;
-
-   
 }

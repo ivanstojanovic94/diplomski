@@ -15,11 +15,10 @@ export class AdminRegistrationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  i: number=1;
+    i:number=1;
   userGroupOption: string;
   userGroups: any[]=[];
- 
+
   registrationData: DataConfig<any>[]=[];
   label:string;
   requiredData: boolean;
@@ -29,30 +28,24 @@ export class AdminRegistrationComponent implements OnInit {
   optionValue:string;
   optionKey: string;
 
-
   addGroupOption(){
     let ob={
       key: this.userGroupOption.replace(/\s/g,"").toLocaleLowerCase(),
       value: this.userGroupOption
-
     }
     this.userGroups.push(ob);
     this.userGroupOption="";
     this.i++;
-   
-
   }
 
   addOption(){
     let ob={
       key: this.optionValue.replace(/\s/g,"").toLocaleLowerCase(),
       value: this.optionValue
-
     }
     this.options.push(ob);
     this.optionValue="";
     this.optionKey="";
-
   }
 
   addGroup(stepper: MatStepper){
@@ -136,38 +129,26 @@ export class AdminRegistrationComponent implements OnInit {
     this.label="";
     this.typeChecker="";
     this.requiredData=false;
-    
-
-
-
   }
 
-  addRegistrationTemplate(stepper:MatStepper){
-    this.service.deleteOldTemplate().subscribe(res=>{
-      if(res['message']=='ok'){
-        
-        this.service.addNewTemplate(this.registrationData).subscribe(res=>{
-        if(res['message']=='ok'){
-          
-        this.dialog.open(TemplateConfirmationDialog);
-        stepper.selectedIndex=0;
-      }
-        }
-        )
+  addRegistrationTemplate(stepper: MatStepper) {
+    this.service.deleteOldTemplate().subscribe(res => {
+      if (res['message'] == 'ok') {
+        this.service.addNewTemplate(this.registrationData).subscribe(res => {
+          if (res['message'] == 'ok') {
+            this.dialog.open(TemplateConfirmationDialog);
+            stepper.selectedIndex = 0;
+          }
+        })
       }
     })
-
   }
-
-
 }
 
 @Component({
   selector: 'app-template-confirmation',
   templateUrl: './template-confirmation.html',
- 
 })
 
 export class TemplateConfirmationDialog{
-
 }

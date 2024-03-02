@@ -15,7 +15,6 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     this.user=JSON.parse(localStorage.getItem("loggedUser"));
     //this.userData=Object.keys(this.user.data);
-    
   }
 
 
@@ -41,13 +40,11 @@ export class AccountComponent implements OnInit {
     }else{
     this.router.navigate(['plainUser']);
     }
-    
   }
 
   signOut(){
     localStorage.clear();
     this.router.navigate(['/']);
-    
   }
 
   changePassword(){
@@ -58,11 +55,7 @@ export class AccountComponent implements OnInit {
     
     if(this.pass != this.passconfirm || this.pass=="" || this.pass==null || this.passconfirm=="" || this.passconfirm==null){
       this.messagePassword="Lozinka i potvrda lozinke se razlikuju!";
-      
-
     }else{
-      
-    
       //change on back
       this.userGeneralService.changePassword(this.user.username,this.pass).subscribe(res=>{
         if(res['message']=='ok'){
@@ -71,9 +64,6 @@ export class AccountComponent implements OnInit {
         }
       });
       this.user.password=this.pass;
-
-
-      
     }}
     setTimeout(()=>{
       this.currentPass="";
@@ -81,10 +71,8 @@ export class AccountComponent implements OnInit {
       this.pass="";
       this.messagePassword="";
       this.success=false;
-      
     },10000)
   }
-
 
   deactivateAccount(){
     if(this.currentPass != this.user.password || this.currentPass=="" || this.currentPass==null){
@@ -96,22 +84,19 @@ export class AccountComponent implements OnInit {
         if(res['message']=='ok'){
           this.messagePassword="Vaš nalog je deaktiviran. Žao nam je što odlazite.";
           this.success=true;
-        }
-        });
+        }});
+        
         setTimeout(()=>{
           this.messagePassword="";
           this.success=false;
           localStorage.removeItem('loggedUser');
           this.router.navigate(['/']);
         },10000)
-      
     }
     setTimeout(()=>{
       this.messagePassword="";
           this.success=false;
 
     },5000)
-    
   }
-
 }

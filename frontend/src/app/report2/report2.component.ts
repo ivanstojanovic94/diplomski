@@ -4,8 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from '../admin.service';
 import { ApplicationService } from '../application.service';
-import { PublicCall } from '../models/publicCall';
-import { AppsPerCall } from '../reports/reports.component';
 
 export class AppsPerField{
   field: string;
@@ -17,6 +15,7 @@ export class AppsPerField{
   templateUrl: './report2.component.html',
   styleUrls: ['./report2.component.css']
 })
+
 export class Report2Component implements OnInit {
 
   fileName='';
@@ -49,16 +48,9 @@ export class Report2Component implements OnInit {
        this.dataSource = new MatTableDataSource<AppsPerField>(this.filteredCalls);
        this.dataSource.paginator = this.paginator;
        this.filteredCalls.forEach(call=>{
-         
-        this.data.push({'name':call.field,'value':call.count});
+       this.data.push({'name':call.field,'value':call.count});
        })
-       
-       
-     
- 
-     
     })
-    
   }
 
   appsPerCall: []=[];
@@ -69,7 +61,4 @@ export class Report2Component implements OnInit {
 //appssPerInstitution?
 //appssPerScientificField?
 //callsPerCategory?
-
-  
-
 }

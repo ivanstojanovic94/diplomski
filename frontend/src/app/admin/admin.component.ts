@@ -64,23 +64,18 @@ export class AdminComponent implements OnInit {
     
   }
 
-  
-
   account(){
     this.router.navigate(['account']);
   }
- 
 
   addOption(){
     let ob={
       key: this.optionValue.replace(/\s/g,"").toLocaleLowerCase(),
       value: this.optionValue
-
     }
     this.options.push(ob);
     this.optionValue="";
     this.optionKey="";
-
   }
 
   addData(){
@@ -148,10 +143,7 @@ export class AdminComponent implements OnInit {
     this.label="";
     this.typeChecker="";
     this.requiredData=false;
-    
-
   }
-
   openCall(stepper: MatStepper){
 
       let publishDate=new Date();
@@ -161,13 +153,12 @@ export class AdminComponent implements OnInit {
       let month=this.javniPoziv.deadline.split("-")[1];
       let day=this.javniPoziv.deadline.split("-")[2];
       let deadlineFormated=day+"/"+month+"/"+year;
-      
-      
+
       if(this.javniPoziv.userGroup=="" || this.javniPoziv.userGroup==null){
         this.javniPoziv.userGroup="svi";
       }
-      
         this.service.openPublicCall(this.javniPoziv.name, publishDateFormated, deadlineFormated, this.javniPoziv.basicInfo, this.javniPoziv.userGroup, this.javniPoziv.scienceField, this.javniPoziv.institution, this.javniPozivPodaci).subscribe(res=>{
+          
           if(res['message']=="added call"){
             this.message = "Uspešno ste otvorili javni poziv!";
             const dialogRef = this.dialog.open(DialogOverviewExampleDialog,{
@@ -186,9 +177,6 @@ export class AdminComponent implements OnInit {
         this.publishDatePretty="";
         this.deadlinePretty="";
         stepper.selectedIndex=0;
-
-        
-
   }
   setDatesPretty(){
     let publishDate=new Date();
@@ -201,11 +189,9 @@ export class AdminComponent implements OnInit {
     }
   }
 
-
   signOut(){
     localStorage.removeItem("loggedUser");
     this.router.navigate(['/']);
-    
   }
 
   changePassword(){
@@ -213,14 +199,9 @@ export class AdminComponent implements OnInit {
       this.messagePassword="Lozinka koja je uneta je netačna!";
       this.success=false;
     }else{
-    
     if(this.pass != this.passconfirm || this.pass=="" || this.pass==null || this.passconfirm=="" || this.passconfirm==null){
       this.messagePassword="Lozinka i potvrda lozinke se razlikuju!";
-      
-
     }else{
-      
-    
       //change on back
       this.userGeneralService.changePassword(this.admin.username,this.pass).subscribe(res=>{
         if(res['message']=='ok'){
@@ -229,20 +210,16 @@ export class AdminComponent implements OnInit {
         }
       });
       this.admin.password=this.pass;
-
-
-      
     }}
+
     setTimeout(()=>{
       this.currentPass="";
       this.passconfirm="";
       this.pass="";
       this.messagePassword="";
       this.success=false;
-      
     },10000)
   }
-
 
   deactivateAccount(){
     if(this.currentPass != this.admin.password || this.currentPass=="" || this.currentPass==null){
@@ -256,25 +233,20 @@ export class AdminComponent implements OnInit {
           this.success=true;
         }
         });
+
         setTimeout(()=>{
           this.messagePassword="";
           this.success=false;
           localStorage.removeItem('loggedUser');
           this.router.navigate(['/']);
         },10000)
-      
     }
+
     setTimeout(()=>{
       this.messagePassword="";
           this.success=false;
-
     },5000)
-    
   }
-
-
-  
-
 }
 
 

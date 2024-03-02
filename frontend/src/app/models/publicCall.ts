@@ -10,6 +10,4 @@ export class PublicCall{
     scienceField: string;
     institution: string;
     applicationDataConfig: Array<DataConfig<any>>;
-
-
 }
