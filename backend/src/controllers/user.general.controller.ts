@@ -30,10 +30,7 @@ export class UserGeneralController{
     register=(req: express.Request, res: express.Response)=>{
        
         User.find({'username':req.body.username},(err,users)=>{
-            
-            
             if(users.length!=0){
-                
                 res.json({'message':'usernameExists'});
             }else{
                 User.find({},(err,users)=>{
@@ -51,6 +48,5 @@ export class UserGeneralController{
                 })
             }
         })
-       
     }
 }

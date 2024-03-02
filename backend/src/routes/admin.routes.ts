@@ -6,5 +6,4 @@ adminRouter.route('/openCall').post(
     (req,res)=>new AdminController().openPublicCall(req,res)
 );
 
-
 export default adminRouter;

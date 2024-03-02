@@ -2,7 +2,6 @@ import express from 'express';
 import publicCall from '../models/publicCall';
 import PublicCall from '../models/publicCall';
 
-
 export class PublicCallsController{
     getPublicCallById=(req: express.Request, res: express.Response)=>{
         let id = req.body.id;
@@ -10,7 +9,6 @@ export class PublicCallsController{
             if(err) console.log(err);
             else res.json(publicCall);
         })
-
     }
 
     getQuestionsOfCall=(req: express.Request, res: express.Response)=>{
@@ -18,7 +16,6 @@ export class PublicCallsController{
         PublicCall.find({'id': id}, {applicationDataConfig: 1, _id: 0}, (err,puclicCall)=>{
             if(err) console.log(err);
             else res.json(publicCall);
-
         })
     }
 
@@ -33,14 +30,8 @@ export class PublicCallsController{
     retrievePublicCalls=(req: express.Request, res: express.Response)=>{
         PublicCall.find({},(err,publicCalls)=>{
             if(err) {console.log(err);
-            
         }
             else res.json(publicCalls);
         })
     }
-   
-    
-       
-
-
 }

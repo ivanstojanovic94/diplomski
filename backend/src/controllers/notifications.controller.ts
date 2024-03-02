@@ -1,6 +1,5 @@
 import express, { json } from 'express';
-import Notification from '../models/Notification';
-
+import Notification from '../models/notification';
 
 export class NotificationsController{
 
@@ -9,7 +8,6 @@ export class NotificationsController{
             if(err) console.log(err);
             else{
             let id=notifs[notifs.length-1].id+1;
-
             let notification=new Notification(req.body);
             notification.id=id;
             notification.save().then(app=>{
@@ -17,12 +15,8 @@ export class NotificationsController{
         }).catch(err=>{
             console.log(err);
         })
-
             }
-
         })
-        
-        
     }
 
     getNotifications=(req: express.Request, res: express.Response)=>{
@@ -48,5 +42,4 @@ export class NotificationsController{
         Notification.collection.updateOne({'id': id}, {$set: {read: 1}});
         res.json({message:'ok'});
     }
-
 }

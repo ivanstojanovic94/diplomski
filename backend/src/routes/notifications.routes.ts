@@ -6,14 +6,12 @@ const notificationsRouter=express.Router();
 notificationsRouter.route('/pushNotification').post(
     (req,res)=>new NotificationsController().pushNotification(req,res)
 );
-
 notificationsRouter.route('/getNotifications').post(
     (req,res)=>new NotificationsController().getNotifications(req,res)
 );
 notificationsRouter.route('/deleteNotification').post(
     (req,res)=>new NotificationsController().deleteNotification(req,res)
 );
-
 notificationsRouter.route('/markAsRead').post(
     (req,res)=>new NotificationsController().markAsRead(req,res)
 );

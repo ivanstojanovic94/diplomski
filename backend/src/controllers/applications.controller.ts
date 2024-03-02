@@ -1,7 +1,6 @@
 import express from 'express';
 import Application from '../models/application';
 
-
 export class ApplicationsController{
 
     saveApplication=(req: express.Request, res: express.Response)=>{
@@ -20,7 +19,6 @@ export class ApplicationsController{
         })
     }
 
-
     getAllDraftedApplications=(req: express.Request, res: express.Response)=>{
         let username=req.body.username;
         Application.find({$and: [{'status': {$eq:'nedovrseno'}}, {'user': {$eq: username}}]},(err,drafts)=>{
@@ -29,7 +27,6 @@ export class ApplicationsController{
                 res.json(drafts);
             }
         })
-
     }
 
     getAllApplications=(req: express.Request, res: express.Response)=>{
@@ -92,6 +89,7 @@ export class ApplicationsController{
         })
         
     }
+
     numberOfAppsPerScienceField=(req: express.Request, res: express.Response)=>{
         let docs = Application.aggregate([
             {
@@ -107,6 +105,7 @@ export class ApplicationsController{
         })
         
     }
+
     numberOfAppsPerInstitution=(req: express.Request, res: express.Response)=>{
         let docs = Application.aggregate([
             {
@@ -120,7 +119,5 @@ export class ApplicationsController{
             
             res.json(apps);
         })
-        
     }
-    
 }
