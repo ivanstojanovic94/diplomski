@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
       // console.log(this.helper);
       this.questions = this.helper.data;
       //console.log(JSON.stringify(this.questions));
-
       this.form = this.toFormGroup();
     })
   }
@@ -57,13 +56,14 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  // ova metoda se poziva 
   toFormGroup() {
     const group: any = {};
-
     this.questions.forEach(question => {
       group[question.name] = question.required ? new FormControl(question.value || '', Validators.required)
         : new FormControl(question.value || '');
     });
+
     return new FormGroup(group);
   }
 
