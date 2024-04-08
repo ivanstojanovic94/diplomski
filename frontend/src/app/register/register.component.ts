@@ -7,7 +7,6 @@ import { DataConfig } from '../models/dataConfig';
 import { Display } from '../models/display';
 import { TemplateRegister } from '../models/templateRegister';
 import { User } from '../models/user';
-
 import { TemplatesService } from '../templates.service';
 import { UserGeneralService } from '../user.general.service';
 
@@ -16,13 +15,13 @@ import { UserGeneralService } from '../user.general.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
 
   constructor(private service: TemplatesService, private userService: UserGeneralService,
     public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-
     this.service.getTemplate().subscribe((templateData: TemplateRegister) => {
       this.helper = new TemplateRegister();
       this.helper = templateData;
@@ -38,22 +37,16 @@ export class RegisterComponent implements OnInit {
   confirmPassword: string;
   message: string;
   helper: TemplateRegister = {} as TemplateRegister;
-
   form: FormGroup;
   payLoad = "";
-
   questions: DataConfig<any>[] = [];
   uri = 'http://localhost:4000';
   url = `${this.uri}/publicCalls/getPublicCallById`;
-
   newUser: User;
   displayed: Display[] = [];
 
-
   isValid(question) {
-
     return this.form.controls[question.name].valid;
-
   }
 
   // ova metoda se poziva 
@@ -63,7 +56,6 @@ export class RegisterComponent implements OnInit {
       group[question.name] = question.required ? new FormControl(question.value || '', Validators.required)
         : new FormControl(question.value || '');
     });
-
     return new FormGroup(group);
   }
 

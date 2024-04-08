@@ -93,7 +93,6 @@ export class PlainUserComponent implements OnInit {
       if (this.pass != this.passconfirm || this.pass == "" || this.pass == null || this.passconfirm == "" || this.passconfirm == null) {
         this.messagePassword = "Lozinka i potvrda lozinke se razlikuju!";
       } else {
-
         //change on back
         this.userGeneralService.changePassword(this.user.username, this.pass).subscribe(res => {
           if (res['message'] == 'ok') {
@@ -134,6 +133,7 @@ export class PlainUserComponent implements OnInit {
         this.router.navigate(['/']);
       }, 10000)
     }
+    
     setTimeout(() => {
       this.messagePassword = "";
       this.success = false;
