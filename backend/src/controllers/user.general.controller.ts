@@ -2,16 +2,24 @@ import express from 'express';
 import User from '../models/user';
 
 export class UserGeneralController{
-    login = (req: express.Request, res: express.Response)=>{
+    login = async (req: express.Request, res: express.Response)=>{
         let username=req.body.username;
         let password=req.body.password;
         //let type=req.body.type;
-
-        User.findOne({'username': username, 'password': password, 'activeAccount': 1},
-        (err, user)=>{
-            if(err) console.log(err);
-            else res.json(user);
-        })
+       
+        try{
+            const user = await User.findOne({ username, password});
+            var users = await User.find();
+            const user2 = users.filter(e => e.username == username && e.password == password);
+            if (!user2) {
+              console.log(`User not found for username '${username}' and password '${password}'`);
+              return res.status(404).json({ error: 'User not found' });
+            }
+        console.log(user2);
+        res.json(user2);
+        }catch(error){
+            console.log(error);
+        }
     }
 
     changePassword=(req: express.Request, res: express.Response)=>{

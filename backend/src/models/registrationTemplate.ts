@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-
-
 const Schema = mongoose.Schema;
 
 let RegistrationTemplate = new Schema({
@@ -14,5 +12,6 @@ let RegistrationTemplate = new Schema({
     }
 
 });
+
 
 export default mongoose.model("RegistrationTemplate", RegistrationTemplate, "registrationTemplates");

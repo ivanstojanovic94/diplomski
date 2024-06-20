@@ -26,9 +26,9 @@ export class RegisterComponent implements OnInit {
     this.service.getTemplate().subscribe((templateData: TemplateRegister) => {
       this.helper = new TemplateRegister();
       this.helper = templateData;
-      // console.log(this.helper);
+      console.log(this.helper);
       this.questions = this.helper.data;
-      //console.log(JSON.stringify(this.questions));
+      console.log(JSON.stringify(this.questions));
 
       this.form = this.toFormGroup();
     })
