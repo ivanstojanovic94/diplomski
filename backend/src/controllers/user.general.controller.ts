@@ -10,15 +10,18 @@ export class UserGeneralController{
         try{
             const user = await User.findOne({ username, password});
             var users = await User.find();
-            const user2 = users.filter(e => e.username == username && e.password == password);
-            if (!user2) {
+            let user2 = users.filter(e => e.username == username && e.password == password);
+            if (!user2 || user2.length == 0) {
               console.log(`User not found for username '${username}' and password '${password}'`);
-              return res.status(404).json({ error: 'User not found' });
+              return res.status(404).json("Not found");
+            }else{
+
+                console.log(user2);
+                res.json(user2);
             }
-        console.log(user2);
-        res.json(user2);
         }catch(error){
             console.log(error);
+            return res.status(422);
         }
     }
 

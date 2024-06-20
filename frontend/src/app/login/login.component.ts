@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
         if(user.type==0){
           this.router.navigate(['plainUser']);
-        }else{
+        }else if(user.type == 1){
           this.router.navigate(['admin']);
         }
       }else{

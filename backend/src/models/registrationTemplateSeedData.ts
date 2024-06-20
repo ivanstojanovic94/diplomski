@@ -16,6 +16,15 @@ const seedData = [
       type: 'input',
       required: false,
       options: null
+    },
+    {
+      value: 'tip',
+      name: 'tip',
+      label: 'Drzava',
+      inputType: 'text',
+      type: 'select',
+      required: false,
+      options: [{key: 'srbija', value: 'Srbija'}, {key: 'cg', value: 'Crna Gora'}]
     }
   ];
   
