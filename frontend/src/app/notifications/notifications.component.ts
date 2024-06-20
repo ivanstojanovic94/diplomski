@@ -4,7 +4,6 @@ import { Notiification } from '../models/notification';
 import { User } from '../models/user';
 import { NotificationsService } from '../notifications.service';
 
-
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
@@ -21,8 +20,6 @@ export class NotificationsComponent implements OnInit {
     this.service.getNotifications(this.user.username).subscribe((notifs: Notiification[])=>{
       this.notificationsArray=notifs;
     })
-  
-
   }
 
   notificationsArray: Notiification[]=[];
@@ -31,7 +28,6 @@ export class NotificationsComponent implements OnInit {
 
   return(){
     this.router.navigate(['plainUser']);
-    
   }
 
   notifications(){
@@ -41,6 +37,7 @@ export class NotificationsComponent implements OnInit {
   account(){
     this.router.navigate(['account']);
   }
+
   deleteMessage(notify){
     this.service.deleteNotification(notify.id).subscribe(res=>{
       if(res['message']=="ok"){
@@ -49,8 +46,8 @@ export class NotificationsComponent implements OnInit {
         })
       }
     })
-
   }
+
   markAsRead(notify){
     this.service.markAsRead(notify.id).subscribe(res=>{
       if(res['message']=="ok"){
@@ -59,7 +56,5 @@ export class NotificationsComponent implements OnInit {
         })
       }
     })
-
   }
-
 }

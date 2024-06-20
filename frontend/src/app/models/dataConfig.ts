@@ -7,8 +7,6 @@ export class DataConfig<T>{
     required: boolean;
     options: {key: string, value: string}[];
     
-
-
 constructor( dataConfigParameter: {
     value?: T;
     name?: string;

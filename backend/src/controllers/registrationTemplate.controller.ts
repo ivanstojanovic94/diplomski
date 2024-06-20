@@ -24,14 +24,15 @@ export class RegistrationTemplateController{
         })
     }
 
-    getTemplate=(req: express.Request, res: express.Response)=>{
-        RegistrationTemplate.findOne({'id' : 1}, (err,obj)=>{
-            if(err) console.log(err);
-            else {
-                
-                res.json(obj);
-                
-            };
-        })
+    getTemplate= async (req: express.Request, res: express.Response)=> {
+        try {
+            const obj = await RegistrationTemplate.findOne({ 'id': 1 });
+            if (!obj) {
+              return res.status(404).send('Template not found');
+            }
+            return res.status(200).json(obj);
+          } catch (err) {
+            return res.status(500).send(err);
+          }
     }
 }

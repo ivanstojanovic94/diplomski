@@ -14,35 +14,29 @@ import { PublicCall } from '../models/publicCall';
   templateUrl: './admin-applications-view.component.html',
   styleUrls: ['./admin-applications-view.component.css']
 })
+
 export class AdminApplicationsViewComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'scienceField', 'institution', 'publishDate', 'deadline', 'actionColumn'];
   dataSource: MatTableDataSource<PublicCall>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
  
   publicCalls: PublicCall[]=[];
   applications: Application[]=[];
 
   constructor(private service: AdminService, private appService: ApplicationService, private dialog: MatDialog) {
-    
    }
 
-   
  ngOnInit():void{
   this.service.retrieveAllPublicCalls().subscribe((calls: PublicCall[])=>{
     this.publicCalls=calls;
     this.dataSource=new MatTableDataSource(calls);
     this.dataSource.paginator=this.paginator;
     this.dataSource.sort = this.sort;
-    
- })
-
- }
+ })}
 
  viewApps(id){
-   
    //get all applications for public call
    //show them in new dialog
    this.appService.getApplicationsOfCall(id).subscribe((apps: Application[])=>{
@@ -50,16 +44,7 @@ export class AdminApplicationsViewComponent implements OnInit {
      //show in dialog
      const dialogRef=this.dialog.open(ApplicationListingDialogComponent,{data: this.applications, height: '600px', width:'600px'});
     dialogRef.afterClosed().subscribe(result=>{
-
     });
    })
-
-
-
  }
-
-  
-
- 
-
 }
